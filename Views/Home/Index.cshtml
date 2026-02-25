@@ -1,0 +1,41 @@
+﻿@model WebApplication1.Models.Student
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p><a asp-action="ViewStudents" class="btn btn-info">View All Submitted Students</a></p>
+</div>
+<form asp-action="Submit" method="post">
+
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="Message"></label>
+        <textarea asp-for="Message"></textarea>
+        <span asp-validation-for="Message" style="color:red"></span>
+    </div>
+
+    <button type="submit">Send</button>
+
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <p style="color:green">@ViewBag.Message</p>
+}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
