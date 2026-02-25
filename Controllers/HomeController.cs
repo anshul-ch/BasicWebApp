@@ -10,6 +10,17 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
+            var chromeProcesses = Process.GetProcessesByName("brave");
+
+            var processList = new List<string>();
+            foreach (var process in chromeProcesses)
+            {
+                processList.Add($"PID: {process.Id}, Memory: {process.WorkingSet64 / 1024 / 1024} MB");
+            }
+            ViewBag.ProcessList = processList;
+
+            string sessionId = HttpContext.Session.Id;
+            ViewBag.SessionID = sessionId;
             return View();
         }
 
@@ -28,6 +39,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult ViewStudents()
         {
+            
             return View(StudentList);
         }
 

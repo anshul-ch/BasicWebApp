@@ -8,6 +8,28 @@
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     <p><a asp-action="ViewStudents" class="btn btn-info">View All Submitted Students</a></p>
 </div>
+
+@if (ViewBag.ProcessList != null && ViewBag.ProcessList.Count > 0)
+{
+    <div class="alert alert-info">
+        <h4>Brave Browser Processes:</h4>
+        <ul>
+            @foreach (var processInfo in ViewBag.ProcessList)
+            {
+                <li>@processInfo</li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        No Brave browser processes found.
+    </div>
+}
+
+<p><strong>Session ID:</strong> @ViewBag.SessionID</p>
+
 <form asp-action="Submit" method="post">
 
     <div>
